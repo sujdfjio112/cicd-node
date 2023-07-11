@@ -2,8 +2,8 @@ const express = require('express');
 const WebSocket = require('ws');
 
 const app = express();
-const port = process.env.PORT || 4000;
-const server = app.listen(4000);
+const port = 80;
+const server = app.listen(port);
 
 // 创建 WebSocket 服务器
 const wss = new WebSocket.Server({ server});
