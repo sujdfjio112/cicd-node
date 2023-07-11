@@ -13,16 +13,12 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-     - name: Deploy to server
+      - name: Deploy to server
         uses: easingthemes/ssh-deploy@v2.1.5
         env:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
           REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
           REMOTE_USER: ${{ secrets.REMOTE_USER }}
-          REMOTE_PASS: ${{ secrets.REMOTE_PASS }}
-          TARGET: /
+          TARGET: /path/to/deploy/to
         with:
-          host: ${{ secrets.REMOTE_HOST }} # 服务器域名
-          user: ${{ secrets.REMOTE_USER }} # 腾讯云默认用户名为root
-          pass: ${{ secrets.REMOTE_PASS }} # 本地.ssh文件下的私钥id_rsa，存在secrets中
-          source: './' # 源目录，相对于$GITHUB_WORKSPACE根目录的路径
-          target: 'c:\'
+          args: rsync --delete -az --exclude '.git/' -e 'ssh -o StrictHostKeyChecking=no' $GITHUB_WORKSPACE/ ${{ env.REMOTE_USER }}@${{ env.REMOTE_HOST }}:${{ env.TARGET }}
