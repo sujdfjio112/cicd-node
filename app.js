@@ -2,7 +2,7 @@ const express = require('express');
 const WebSocket = require('ws');
 
 const app = express();
-const port = 80;
+const port = 4000;
 const server = app.listen(port);
 
 // 创建 WebSocket 服务器
