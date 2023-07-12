@@ -1,5 +1,11 @@
+# 测试连接
+Test-NetConnection 115.159.102.152
+
 # 连接到远程服务器
 $session = New-PSSession -ComputerName $env:SERVER_IP -Credential (Get-Credential)
+
+# 添加
+Set-Item WSMan:\localhost\Client\TrustedHosts -Value $env:SERVER_IP -Force
 
 # 切换到应用程序目录
 Invoke-Command -Session $session -ScriptBlock {
