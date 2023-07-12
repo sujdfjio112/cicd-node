@@ -13,10 +13,8 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Run PowerShell script
-        uses: actions/setup-powershell@v1
-        with:
-          pwsh: "latest"
+      - name: Set up PowerShell
+        uses: microsoft/setup-powershell@v1
 
       - name: Execute PowerShell script
         shell: pwsh
