@@ -19,7 +19,7 @@ jobs:
 
       - name: Execute PowerShell script
         shell: pwsh
-        run: .\deploy.ps1
+        run: $env:GITHUB_WORKSPACE\deploy.ps1
         env:
           SERVER_IP: ${{ secrets.SERVER_IP }}
           USERNAME: ${{ secrets.SERVER_USERNAME }}
