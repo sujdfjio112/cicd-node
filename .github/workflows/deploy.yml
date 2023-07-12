@@ -19,9 +19,13 @@ jobs:
 
       - name: Execute PowerShell script
         shell: pwsh
+        # run: .\deploy.ps1
         run: |
           # Connect to remote server
-          $session = New-PSSession -ComputerName $env:SERVER_IP -Credential (Get-Credential)
+          $username = $env:USERNAME
+          $password = $env:PASSWORD | ConvertTo-SecureString -AsPlainText -Force
+          $credential = New-Object System.Management.Automation.PSCredential ($username, $password)
+          $session = New-PSSession -ComputerName $env:SERVER_IP -Credential $credential
         env:
           SERVER_IP: ${{ secrets.SERVER_IP }}
           USERNAME: ${{ secrets.SERVER_USERNAME }}
