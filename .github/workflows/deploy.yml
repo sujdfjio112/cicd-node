@@ -13,10 +13,12 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Install PowerShell
+      - name: Set up PowerShell
+        uses: microsoft/setup-powershell@v1
+
+      - name: List files in current directory
         run: |
-          Invoke-WebRequest -Uri https://aka.ms/install-powershell.ps1 -OutFile install-powershell.ps1
-          .\install-powershell.ps1 -AddToPath
+          dir
 
       - name: Execute PowerShell script
         shell: pwsh
