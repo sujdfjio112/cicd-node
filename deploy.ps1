@@ -1,7 +1,7 @@
 
-Write-Host "Server IP address: $env:SERVER_IP"
+Write-Host "Server IP address:" $env:SERVER_IP
 # 连接到远程服务器
-$session = New-PSSession -ComputerName $env:SERVER_IP -Credential (Get-Credential)
+$session = New-PSSession -ComputerName '115.159.102.152' -Credential (Get-Credential)
 
 # 切换到应用程序目录
 Invoke-Command -Session $session -ScriptBlock {
