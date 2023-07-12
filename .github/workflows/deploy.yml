@@ -13,13 +13,14 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Deploy application
-        uses: microsoft/powershell@v1
+      - name: Run PowerShell script
+        uses: actions/setup-powershell@v1
         with:
-          pwsh: "pwsh.exe"
-          inlineScript: |
-            # 运行 PowerShell 脚本
-            .\deploy.ps1
+          pwsh: "latest"
+
+      - name: Execute PowerShell script
+        shell: pwsh
+        run: .\deploy.ps1
         env:
           SERVER_IP: ${{ secrets.SERVER_IP }}
           USERNAME: ${{ secrets.SERVER_USERNAME }}
