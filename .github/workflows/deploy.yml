@@ -13,12 +13,6 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Set up PowerShell
-        uses: actions/setup-powershell@v2
-        with:
-          pwsh-version: "7.1"
-          modules: "Pester"
-
       - name: List files in current directory
         run: |
           dir
