@@ -13,26 +13,13 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Test remote server connection
-        uses: maxkomarychev/rdp-action@v1
-        with:
-          rdp_host: ${{secrets.SERVER_IP}}
-          rdp_user: ${{ secrets.SERVER_USERNAME }}
-          rdp_password: ${{ secrets.SERVER_PASSWORD }}
-
       - name: List files in current directory
         run: |
           dir
 
       - name: Execute PowerShell script
         shell: pwsh
-        # run: .\deploy.ps1
-        run: |
-          # Connect to remote server
-          $username = $env:USERNAME
-          $password = $env:PASSWORD | ConvertTo-SecureString -AsPlainText -Force
-          $credential = New-Object System.Management.Automation.PSCredential ($username, $password)
-          $session = New-PSSession -ComputerName $env:SERVER_IP -Credential $credential
+        run: .\deploy.ps1
         env:
           SERVER_IP: ${{ secrets.SERVER_IP }}
           USERNAME: ${{ secrets.SERVER_USERNAME }}
