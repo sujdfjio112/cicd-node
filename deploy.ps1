@@ -1,6 +1,6 @@
 $env:SERVER_IP = "115.159.102.152"
 # 测试连接
-Test-NetConnection -ComputerName 115.159.102.152
+Test-NetConnection -ComputerName 115.159.102.152 -Port 3389
 
 Set-Item WSMan:\localhost\Client\TrustedHosts -Value "115.159.102.152" -Concatenate -Force
 
