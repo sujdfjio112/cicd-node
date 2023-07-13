@@ -1,13 +1,10 @@
-$env:SERVER_IP = "115.159.102.152"
+
 # 测试连接
-Test-NetConnection -ComputerName 115.159.102.152 -Port 3389
+Test-NetConnection -ComputerName $env:SERVER_IP -Port 3389
 
-
-Write-Host "SERVER_IP = $env:SERVER_IP"
-Write-Host "USERNAME = $env:USERNAME"
-Write-Host "PASSWORD = $env:PASSWORD"
-Write-Host "USERNAME = $env:SERVER_USERNAME"
-Write-Host "PASSWORD = $env:SERVER_PASSWORD"
+Write-Host "SERVER_IP = `"`"$env:SERVER_IP`"`"" -NoNewline
+Write-Host "USERNAME = `"`"$env:USERNAME`"`"" -NoNewline
+Write-Host "PASSWORD = `"`"$env:PASSWORD`"`"" -NoNewline
 
 # # 指定要创建的文件路径和内容
 # $FilePath = "C:\temp\test.txt"
