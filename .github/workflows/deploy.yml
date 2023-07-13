@@ -1,26 +1,21 @@
-name: Deploy to Windows Server
-
+name: Connect to remote desktop and create a file
 on:
   push:
     branches:
       - main
-
 jobs:
-  deploy:
+  build:
     runs-on: windows-latest
-
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: List files in current directory
+      - name: Connect to Windows remote desktop
+        uses: Azure/rdp-windows@v1
+        with:
+          server-name: ${{ secrets.SERVER_IP }}
+          username: ${{ secrets.SERVER_USERNAME }}
+          password: ${{ secrets.SERVER_PASSWORD }}
+          port: 3389
+      - name: Create a file on remote desktop
+        shell: powershell
         run: |
-          dir
-
-      - name: Execute PowerShell script
-        shell: pwsh
-        run: .\deploy.ps1
-        env:
-          SERVER_IP: ${{ secrets.SERVER_IP }}
-          USERNAME: ${{ secrets.SERVER_USERNAME }}
-          PASSWORD: ${{ secrets.SERVER_PASSWORD }}
+          New-Item -ItemType File -Path C:\test.txt
+          Set-Content -Path C:\test.txt -Value "Hello, World!"

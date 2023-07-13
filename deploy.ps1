@@ -7,16 +7,6 @@ $Username = $env:USERNAME
 $Password = ConvertTo-SecureString $env:PASSWORD -AsPlainText -Force
 $Credential = New-Object System.Management.Automation.PSCredential($Username, $Password)
 
-# Create TrustedHosts item if it does not exist
-if (!(Test-Path WSMan:\localhost\Client\TrustedHosts)) {
-    New-Item -Path WSMan:\localhost\Client -Name TrustedHosts -Value "*" -Force | Out-Null
-}
-
-# Add remote server to TrustedHosts list
-Set-Item WSMan:\localhost\Client\TrustedHosts -Value $ServerIpAddress -Concatenate
-
-# Connect to remote server using PowerShell Remoting
-Enter-PSSession -ComputerName $ServerIpAddress -Credential $Credential
 
 # # 切换到应用程序目录
 # Invoke-Command -Session $session -ScriptBlock {
