@@ -8,7 +8,8 @@ $Password = ConvertTo-SecureString $env:PASSWORD -AsPlainText -Force
 $Credential = New-Object System.Management.Automation.PSCredential($Username, $Password)
 
 # Add remote server to TrustedHosts list
-Set-Item WSMan:\localhost\Client\TrustedHosts -Value $ServerIpAddress -Concatenate
+New-Item -Path WSMan:\localhost\Client\TrustedHosts -Type Container
+Set-Item WSMan:\localhost\Client\TrustedHosts -Value $ServerIpAddress -Concatenate  
 
 # Connect to remote server using PowerShell Remoting
 Enter-PSSession -ComputerName $ServerIpAddress -Credential $
