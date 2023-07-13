@@ -13,8 +13,12 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Test connection
-        run: Test-NetConnection -ComputerName 115.159.102.152 -Verbose
+      - name: Test remote server connection
+        uses: maxkomarychev/rdp-action@v1
+        with:
+          rdp_host: ${{secrets.SERVER_IP}}
+          rdp_user: ${{ secrets.SERVER_USERNAME }}
+          rdp_password: ${{ secrets.SERVER_PASSWORD }}
 
       - name: List files in current directory
         run: |
