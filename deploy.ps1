@@ -2,33 +2,16 @@
 # 测试连接
 Test-NetConnection -ComputerName $env:SERVER_IP -Port 3389
 
-$ip = $env:SERVER_IP
-$username = $env:USERNAME
-$password = $env:PASSWORD
+$ServerIpAddress = $env:SERVER_IP
+$Username = $env:USERNAME
+$Password = ConvertTo-SecureString $env:PASSWORD -AsPlainText -Force
+$Credential = New-Object System.Management.Automation.PSCredential($Username, $Password)
 
-# Set the remote directory path and file name
-$remoteDirPath = "C:\Users\Administrator\Desktop"
-$fileName = "newfile.txt"
+# Add remote server to TrustedHosts list
+Set-Item WSMan:\localhost\Client\TrustedHosts -Value $ServerIpAddress -Concatenate
 
-# Create a new PSSession to the remote server
-$Session = New-PSSession -ComputerName $ip -Credential (New-Object System.Management.Automation.PSCredential ($username, (ConvertTo-SecureString $password -AsPlainText -Force)))
-
-# Invoke a command on the remote server to create the new file
-Invoke-Command -Session $Session -ScriptBlock {
-    # Create the new file in the specified directory
-    New-Item -ItemType File -Path $using:remoteDirPath -Name $using:fileName
-}
-
-# Close the session when you're finished
-Remove-PSSession $Session
-# # 指定要创建的文件路径和内容
-# $FilePath = "C:\temp\test.txt"
-# $FileContent = "Hello, World!"
-
-# # 在远程服务器上创建文件并设置内容
-# Invoke-Command -ComputerName $ComputerName -Credential $Credential -ScriptBlock {
-#     Set-Content -Path $using:FilePath -Value $using:FileContent
-# }
+# Connect to remote server using PowerShell Remoting
+Enter-PSSession -ComputerName $ServerIpAddress -Credential $
 
 # # 切换到应用程序目录
 # Invoke-Command -Session $session -ScriptBlock {
