@@ -1,10 +1,11 @@
+$env:SERVER_IP = "115.159.102.152"
 # 测试连接
 Test-NetConnection -ComputerName 115.159.102.152
 
 Set-Item WSMan:\localhost\Client\TrustedHosts -Value "115.159.102.152" -Concatenate -Force
 
 # 连接到远程服务器，并添加目标计算机到TrustedHosts配置设置中
-$session = New-PSSession -ComputerName $env:SERVER_IP -Credential (Get-Credential) -SessionOption (New-PSSessionOption -SkipCACheck -SkipCNCheck -SkipRevocationCheck)
+$session = New-PSSession -ComputerName $env:SERVER_IP -Credential (Get-Credential) -Authentication CredSSP
 
 # 添加目标计算机到TrustedHosts配置设置中
 Invoke-Command -Session $session -ScriptBlock {
