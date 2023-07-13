@@ -2,9 +2,8 @@
 # 测试连接
 Test-NetConnection -ComputerName $env:SERVER_IP -Port 3389
 
-Write-Host "SERVER_IP = `"`"$env:SERVER_IP`"`"" -NoNewline
-Write-Host "USERNAME = `"`"$env:USERNAME`"`"" -NoNewline
-Write-Host "PASSWORD = `"`"$env:PASSWORD`"`"" -NoNewline
+Write-Host "SERVER_IP = `"${env:SERVER_IP}`"" -NoNewline
+Write-Host "USERNAME = `"${env:USERNAME}`"" -NoNewline
 
 # # 指定要创建的文件路径和内容
 # $FilePath = "C:\temp\test.txt"
