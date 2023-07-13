@@ -5,6 +5,22 @@ Test-NetConnection -ComputerName $env:SERVER_IP -Port 3389
 Write-Host "SERVER_IP = `"${env:SERVER_IP}`"" -NoNewline
 Write-Host "USERNAME = `"${env:USERNAME}`"" -NoNewline
 
+# Set the server IP as an environment variable
+$ip = $env:SERVER_IP
+
+# Test the connection to the remote server
+if (Test-NetConnection $ip -Port 5985) {
+    Write-Host "Connection to $ip successful."
+} else {
+    Write-Host "Unable to connect to $ip."
+}
+
+# Test the ping to the remote server
+if (Test-Connection $ip -Count 1 -Quiet) {
+    Write-Host "Ping to $ip successful."
+} else {
+    Write-Host "Unable to ping $ip."
+}
 # # 指定要创建的文件路径和内容
 # $FilePath = "C:\temp\test.txt"
 # $FileContent = "Hello, World!"
