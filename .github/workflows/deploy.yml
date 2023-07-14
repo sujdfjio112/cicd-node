@@ -14,7 +14,7 @@ jobs:
 
       - name: Run WinRM command
         run: |
-          python your_script.py
+          python ./your_script.py
         env:
           WINRM_HOST: ${{ secrets.SERVER_IP }}
           WINRM_USERNAME: ${{ secrets.SERVER_USERNAME }}
