@@ -32,5 +32,16 @@ session = winrm.Session(host, auth=(username, password))
 # 要跳转到的文件路径
 path = "C:\Users\Administrator\Desktop\ccc\cicd-node"
 
-# 使用 PowerShell 跳转到路径
-os.system(f'powershell.exe cd "{path}"')
+
+# 构建 PowerShell 命令
+powershell_command = f"cd '{path}'"
+
+# 使用 run_ps 方法在远程服务器上执行 PowerShell 命令
+result = session.run_ps(powershell_command)
+
+# 检查命令执行结果
+if result.status_code == 0:
+    print("成功跳转到指定文件夹！")
+else:
+    print(f"跳转到指定文件夹失败：{result.std_err}")
+
