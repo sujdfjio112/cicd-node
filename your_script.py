@@ -29,16 +29,10 @@ session = winrm.Session(host, auth=(username, password))
 
 
 # 指定要拉取代码的目录
-username = 'Administrator'
-git_dir = 'C:\\Users\\' + username + '\\Desktop\\ccc\\cicd-node'
-
-# 检查目录是否存在
-if not os.path.exists(git_dir):
-    print(f'Error: Directory not found: {git_dir}')
-    exit(1)
+git_dir = r'C:\Users\Administrator\Desktop\ccc\cicd-node'
 
 # 更改当前工作目录
-os.chdir(git_dir)
+os.system(f'cd {git_dir} && git pull')
 
 # 执行 Git pull 命令，并捕获输出
 output = subprocess.check_output('git pull', shell=True)
