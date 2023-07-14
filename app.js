@@ -46,5 +46,10 @@ app.get('/api/hello', (req, res) => {
   });
 });
 
+
+app.get('/api/message', (req, res) => {
+  res.send('update sussess！');
+});
+
 // 启动应用程序
 console.log(`应用程序已启动，访问 http://localhost:${port}`);
