@@ -1,4 +1,5 @@
 import winrm
+import os
 
 # 从环境变量中获取 WinRM 连接信息
 host = os.environ["WINRM_HOST"]
