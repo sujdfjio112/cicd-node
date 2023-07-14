@@ -51,5 +51,18 @@ app.get('/api/message', (req, res) => {
   res.send('update sussess！');
 });
 
+app.post('/api/gitpush', (req, res) => {
+  wss.clients.forEach((client) => {
+    if (client.readyState === WebSocket.OPEN) {
+      const message = JSON.stringify({
+        type: 'notification',
+        message: `收到一个新的请求：${req}`,
+      });
+      // 向当前连接发送消息
+      client.send(message);
+    }
+  });
+});
+
 // 启动应用程序
 console.log(`应用程序已启动，访问 http://localhost:${port}`);
