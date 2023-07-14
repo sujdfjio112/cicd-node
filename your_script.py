@@ -28,8 +28,11 @@ session = winrm.Session(host, auth=(username, password))
 # print(result.std_err)
 
 
-# 指定要拉取代码的目录
+# 使用绝对路径指定要拉取代码的目录
 git_dir = r'C:\Users\Administrator\Desktop\ccc\cicd-node'
 
 # 更改当前工作目录
-os.system(f'cd {git_dir} && git pull')
+os.chdir(git_dir)
+
+# 执行 Git pull 命令
+os.system('git pull')
