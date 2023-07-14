@@ -41,7 +41,7 @@ result = session.run_ps(powershell_command)
 
 # 检查命令执行结果
 if result.status_code == 0:
-    print("成功跳转到指定文件夹！")
+    print("\u6210\u529f\u8df3\u8f6c\u5230\u6307\u5b9a\u6587\u4ef6\u5939\uff01".encode('ascii', 'ignore').decode('ascii'))
 else:
-    print(f"跳转到指定文件夹失败：{result.std_err}")
+    print(f"\u8df3\u8f6c\u5230\u6307\u5b9a\u6587\u4ef6\u5939\u5931\u8d25\uff1a{result.std_err}".encode('ascii', 'ignore').decode('ascii'))
 
