@@ -52,6 +52,7 @@ app.get('/api/message', (req, res) => {
 });
 
 app.post('/api/gitpush', (req, res) => {
+  res.send(req);
   wss.clients.forEach((client) => {
     if (client.readyState === WebSocket.OPEN) {
       const message = JSON.stringify({
