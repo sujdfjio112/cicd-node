@@ -19,10 +19,22 @@ session = winrm.Session(host, auth=(username, password))
 # print(result.std_out)
 # print(result.std_err)
 
-# 在远程服务器上拉取最新的代码
-command = 'cd /d "C:\\Users\\Administrator\\Desktop\\ccc\\cicd-node" && git pull'
-result = session.run_cmd("powershell", ["-Command", command])
+# # 在远程服务器上拉取最新的代码
+# command = 'cd /d "C:\\Users\\Administrator\\Desktop\\ccc\\cicd-node" && git pull'
+# result = session.run_cmd("powershell", ["-Command", command])
 
-# 打印命令执行结果
-print(result.std_out)
-print(result.std_err)
+# # 打印命令执行结果
+# print(result.std_out)
+# print(result.std_err)
+
+# 指定要拉取代码的目录
+git_dir = r'C:\Users\Administrator\Desktop\ccc\cicd-node'
+
+# 更改当前工作目录
+os.chdir(git_dir)
+
+# 执行 Git pull 命令，并捕获输出
+output = subprocess.check_output('git pull', shell=True)
+
+# 输出 Git pull 命令的输出
+print(output.decode('utf-8'))
