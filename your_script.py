@@ -34,14 +34,14 @@ path = r'C:\Users\Administrator\Desktop\ccc\cicd-node'
 
 
 # 构建 PowerShell 命令
-powershell_command = f"cd '{path}'"
+powershell_command = f"cd '{path}'; git pull"
 
 # 使用 run_ps 方法在远程服务器上执行 PowerShell 命令
 result = session.run_ps(powershell_command)
 
 # 检查命令执行结果
 if result.status_code == 0:
-    print("\u6210\u529f\u8df3\u8f6c\u5230\u6307\u5b9a\u6587\u4ef6\u5939\uff01".encode('ascii', 'ignore').decode('ascii'))
+    print('Yes!')
 else:
-    print(f"\u8df3\u8f6c\u5230\u6307\u5b9a\u6587\u4ef6\u5939\u5931\u8d25\uff1a{result.std_err}".encode('ascii', 'ignore').decode('ascii'))
+    print('No!')
 
