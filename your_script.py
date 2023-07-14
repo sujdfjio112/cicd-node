@@ -1,5 +1,6 @@
 import winrm
 import os
+import subprocess
 
 # 从环境变量中获取 WinRM 连接信息
 host = os.environ["WINRM_HOST"]
@@ -28,11 +29,13 @@ session = winrm.Session(host, auth=(username, password))
 # print(result.std_err)
 
 
-# 使用绝对路径指定要拉取代码的目录
+# 指定要拉取代码的目录
 git_dir = r'C:\Users\Administrator\Desktop\ccc\cicd-node'
 
-# 更改当前工作目录
-os.chdir(git_dir)
+# 使用 PowerShell 运行命令
+command = f'powershell.exe Set-Location {git_dir}; git pull'
+result = subprocess.run(command, capture_output=True, text=True)
 
-# 执行 Git pull 命令
-os.system('git pull')
+# 输出命令输出和错误信息
+print(result.stdout)
+print(result.stderr)
