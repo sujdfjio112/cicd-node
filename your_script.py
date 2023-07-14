@@ -30,7 +30,7 @@ session = winrm.Session(host, auth=(username, password))
 
 # 指定要拉取代码的目录
 username = 'Administrator'
-git_dir = os.path.join('C:', 'Users', username, 'Desktop', 'ccc', 'cicd-node')
+git_dir = 'C:\\Users\\' + username + '\\Desktop\\ccc\\cicd-node'
 
 # 检查目录是否存在
 if not os.path.exists(git_dir):
