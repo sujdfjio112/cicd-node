@@ -33,9 +33,3 @@ git_dir = r'C:\Users\Administrator\Desktop\ccc\cicd-node'
 
 # 更改当前工作目录
 os.system(f'cd {git_dir} && git pull')
-
-# 执行 Git pull 命令，并捕获输出
-output = subprocess.check_output('git pull', shell=True)
-
-# 输出 Git pull 命令的输出
-print(output.decode('utf-8'))
