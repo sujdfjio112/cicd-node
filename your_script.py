@@ -29,13 +29,8 @@ session = winrm.Session(host, auth=(username, password))
 # print(result.std_err)
 
 
-# 指定要拉取代码的目录
-git_dir = r'C:\Users\Administrator\Desktop\ccc\cicd-node'
+# 要跳转到的文件路径
+path = "C:\Users\Administrator\Desktop\ccc\cicd-node"
 
-# 使用 PowerShell 运行命令
-command = f'powershell.exe Set-Location {git_dir}; git pull'
-result = subprocess.run(command, capture_output=True, text=True)
-
-# 输出命令输出和错误信息
-print(result.stdout)
-print(result.stderr)
+# 使用 PowerShell 跳转到路径
+os.system(f'powershell.exe cd "{path}"')
