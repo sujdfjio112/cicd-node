@@ -27,8 +27,15 @@ session = winrm.Session(host, auth=(username, password))
 # print(result.std_out)
 # print(result.std_err)
 
+
 # 指定要拉取代码的目录
-git_dir = r'C:\Users\Administrator\Desktop\ccc\cicd-node'
+username = 'Administrator'
+git_dir = os.path.join('C:', 'Users', username, 'Desktop', 'ccc', 'cicd-node')
+
+# 检查目录是否存在
+if not os.path.exists(git_dir):
+    print(f'Error: Directory not found: {git_dir}')
+    exit(1)
 
 # 更改当前工作目录
 os.chdir(git_dir)
