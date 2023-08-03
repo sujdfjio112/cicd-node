@@ -1,4 +1,5 @@
 const express = require('express');
+const bodyParser = require('body-parser');
 const WebSocket = require('ws');
 
 const app = express();
@@ -7,6 +8,7 @@ const server = app.listen(port);
 
 // 创建 WebSocket 服务器
 const wss = new WebSocket.Server({ server});
+app.use(bodyParser.json());
 
 // 监听 WebSocket 连接事件
 wss.on('connection', (ws) => {
@@ -51,8 +53,8 @@ app.get('/api/message', (req, res) => {
   res.send('update sussess！');
 });
 
-app.post('/api/gitpush', (req, res) => {
-  res.send(JSON.stringify(req.body));
+app.post('/api/gitpush', (req, res) => { // 设置响应头中的 Content-Type 属性
+  res.send(req.body); // 直接将 req.body 对象作为响应数据发送给客户端
   wss.clients.forEach((client) => {
     if (client.readyState === WebSocket.OPEN) {
       const message = JSON.stringify({
@@ -64,6 +66,7 @@ app.post('/api/gitpush', (req, res) => {
     }
   });
 });
+
 
 // 启动应用程序
 console.log(`应用程序已启动，访问 http://localhost:${port}`);
