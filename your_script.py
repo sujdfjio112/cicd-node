@@ -8,7 +8,7 @@ username = os.environ["WINRM_USERNAME"]
 password = os.environ["WINRM_PASSWORD"]
 
 # 创建 WinRM 会话对象
-session = winrm.Session(host, auth=(username, password))
+$session = winrm.Session(host, auth=(username, password))
 
 # # 在远程服务器上创建一个新的文本文件
 # filename = "test.txt"
@@ -30,14 +30,17 @@ session = winrm.Session(host, auth=(username, password))
 
 
 # 要跳转到的文件路径
-path = r'C:\Users\Administrator\Desktop\ccc\cicd-node'
+$path = r'C:\Users\Administrator\Desktop\ccc\cicd-node'
 
 
 # 构建 PowerShell 命令
-powershell_command = f"cd '{path}'; git pull"
+$powershell_command = "cd '$path'; git pull"
 
-# 使用 run_ps 方法在远程服务器上执行 PowerShell 命令
-result = session.run_ps(powershell_command)
+# 在远程 PowerShell 会话中执行命令
+Invoke-Command -Session $session -ScriptBlock { param($command) Invoke-Expression $command } -ArgumentList $powershell_command
+
+# 关闭远程 PowerShell 会话
+Remove-PSSession $session
 
 # 检查命令执行结果
 if result.status_code == 0:
