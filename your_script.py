@@ -39,12 +39,12 @@ $powershell_command = "cd '$path'; git pull"
 # 在远程 PowerShell 会话中执行命令
 Invoke-Command -Session $session -ScriptBlock { param($command) Invoke-Expression $command } -ArgumentList $powershell_command
 
-# 关闭远程 PowerShell 会话
-Remove-PSSession $session
-
 # 检查命令执行结果
 if result.status_code == 0:
     print('Yes!')
 else:
     print('No!')
+    
+# 关闭远程 PowerShell 会话
+Remove-PSSession $session
 
