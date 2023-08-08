@@ -11,14 +11,14 @@ password = os.environ["WINRM_PASSWORD"]
 session = winrm.Session(host, auth=(username, password))
 
 # # 在远程服务器上创建一个新的文本文件
-filename = "test.txt"
-content = "Hello, World!"
-command = f"New-Item -ItemType File -Path .\\{filename}; Set-Content -Path .\\{filename} -Value '{content}'"
-result = session.run_ps(command)
+# filename = "test.txt"
+# content = "Hello, World!"
+# command = f"New-Item -ItemType File -Path .\\{filename}; Set-Content -Path .\\{filename} -Value '{content}'"
+# result = session.run_ps(command)
 
-# 打印命令执行结果
-print(result.std_out)
-print(result.std_err)
+# # 打印命令执行结果
+# print(result.std_out)
+# print(result.std_err)
 
 # # 在远程服务器上拉取最新的代码
 # command = 'cd /d "C:\\Users\\Administrator\\Desktop\\ccc\\cicd-node" && git pull'
@@ -29,19 +29,19 @@ print(result.std_err)
 # print(result.std_err)
 
 
-# # 要跳转到的文件路径
-# path = r'C:\Users\Administrator\Desktop\ccc\cicd-node'
+# 要跳转到的文件路径
+path = r'C:\Users\Administrator\Desktop\ccc\cicd-node'
 
 
-# # 构建 PowerShell 命令
-# powershell_command = f"cd '{path}'; git pull"
+# 构建 PowerShell 命令
+powershell_command = f"cd '{path}'; git pull"
 
-# # 使用 run_ps 方法在远程服务器上执行 PowerShell 命令
-# result = session.run_ps(powershell_command)
+# 使用 run_ps 方法在远程服务器上执行 PowerShell 命令
+result = session.run_ps(powershell_command)
 
-# # 检查命令执行结果
-# if result.status_code == 0:
-#     print('Yes!')
-# else:
-#     print('No!')
+# 检查命令执行结果
+if result.status_code == 0:
+    print('Yes!')
+else:
+    print('No!')
 

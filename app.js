@@ -12,7 +12,7 @@ app.use(bodyParser.json());
 
 // 监听 WebSocket 连接事件
 wss.on('connection', (ws) => {
-  console.log('WebSocket 连接已建立11111');
+  console.log('WebSocket 连接已建立1111122222');
 
   // 设置心跳定时器
   const heartbeatInterval = setInterval(() => {
