@@ -23,6 +23,3 @@ if result.status_code == 0:
     print('Yes!')
 else:
     print('No!')
-
-# 关闭连接
-session.kill()
