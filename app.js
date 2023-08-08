@@ -59,7 +59,7 @@ app.post('/api/gitpush', (req, res) => { // 设置响应头中的 Content-Type �
     if (client.readyState === WebSocket.OPEN) {
       const message = JSON.stringify({
         type: 'notification',
-        message: `收到一个新的111请求：${req}`,
+        message: req.body,
       });
       // 向当前连接发送消息
       client.send(message);
