@@ -30,7 +30,7 @@ session = winrm.Session(host, auth=(username, password))
 
 
 # 要跳转到的文件路径
-path = r'C:\Users\Administrator\Desktop\ccc\cicd-node'
+path = 'C:\Users\Administrator\Desktop\ccc\cicd-node'
 
 
 # 构建 PowerShell 命令
