@@ -24,5 +24,5 @@ if result.status_code == 0:
 else:
     print('No!')
 
-# 关闭远程会话
-session.close()
+# 关闭连接
+session.kill()
