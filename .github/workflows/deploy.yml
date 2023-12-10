@@ -27,10 +27,8 @@ jobs:
           source: ./*  # 将编译后的文件部署到服务器
           target: /root # 服务器上的目标路径
 
-      - name: Install dependencies on server
-        run: |
-          ssh ${{ secrets.SERVER_USERNAME }}@${{ secrets.SERVER_IP }} 'cd /root'
 
       - name: Start the app on server with PM2
         run: |
           ssh ${{ secrets.SERVER_USERNAME }}@${{ secrets.SERVER_IP }} 'cd /root && pm2 start app.js'
+
