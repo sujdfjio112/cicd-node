@@ -23,7 +23,7 @@ jobs:
         with:
           host: ${{ secrets.SERVER_IP }}
           username: ${{ secrets.SERVER_USERNAME }}
-          key: ${{ secrets.VUEPRESS_SERVER_PRI_KEY }}
+          key: ${{ secrets.VUEPRESS_SERVER_PRI_KEY_1 }}
           source: ./*  # 将编译后的文件部署到服务器
           target: /root # 服务器上的目标路径
 
