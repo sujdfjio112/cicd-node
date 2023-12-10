@@ -29,7 +29,7 @@ jobs:
 
       - name: Install dependencies on server
         run: |
-          ssh ${{ secrets.SERVER_USERNAME }}@${{ secrets.SERVER_IP }} 'cd /root && npm install'
+          ssh ${{ secrets.SERVER_USERNAME }}@${{ secrets.SERVER_IP }} 'cd /root'
 
       - name: Start the app on server with PM2
         run: |
