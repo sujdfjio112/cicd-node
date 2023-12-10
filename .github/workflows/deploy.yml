@@ -28,6 +28,7 @@ jobs:
           target: /root # 服务器上的目标路径
 
 
+
       - name: Start the app on server with PM2
-        run: pm2 start app.js
+        run: 'cd /root && pm2 start app.js'
 
