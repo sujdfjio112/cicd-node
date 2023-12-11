@@ -30,5 +30,5 @@ jobs:
 
 
       - name: Start the app on server with PM2
-        run: 'cd /root && pm2 start app.js'
+        run: 'pm2 start app.js'
 
