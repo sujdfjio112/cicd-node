@@ -13,11 +13,6 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: '14'
-
       - name: Deploy to server
         uses: appleboy/scp-action@master
         with:
@@ -27,5 +22,5 @@ jobs:
           source: ./*  # 将编译后的文件部署到服务器
           target: /nodeserver  # 服务器上的目标路径
           script: |
-            pm2 start /nodeserver/app.js
+            pm2 start app.js
             pm2 save
