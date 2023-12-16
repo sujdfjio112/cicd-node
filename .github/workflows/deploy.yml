@@ -25,14 +25,8 @@ jobs:
           username: ${{ secrets.SERVER_USERNAME }}
           key: ${{ secrets.VUEPRESS_SERVER_PRI_KEY_1 }}
           source: ./*  # 将编译后的文件部署到服务器
-          target: /nodeserver # 服务器上的目标路径
+          target: /nodeserver  # 服务器上的目标路径
 
-
-
-          name: Print current directory
-          run: |
-            pwd
-            ls -la
-          
-
-
+      - name: Start the app on server with PM2
+        run: npm2 run start app.js
+        working-directory: /root
