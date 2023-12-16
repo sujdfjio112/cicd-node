@@ -28,5 +28,5 @@ jobs:
           target: /nodeserver  # 服务器上的目标路径
 
       - name: Start the app on server with PM2
-        run: npm2 run start app.js
+        run: sudo npm2 run start app.js
         working-directory: /root
