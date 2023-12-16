@@ -26,7 +26,6 @@ jobs:
           key: ${{ secrets.VUEPRESS_SERVER_PRI_KEY_1 }}
           source: ./*  # 将编译后的文件部署到服务器
           target: /nodeserver  # 服务器上的目标路径
-
-      - name: Start the app on server with PM2
-        run: sudo pm2 start app.js
-        working-directory: /root
+          script: |
+            pm2 start /nodeserver/app.js
+            pm2 save
