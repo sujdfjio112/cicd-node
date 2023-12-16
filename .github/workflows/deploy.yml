@@ -31,6 +31,6 @@ jobs:
 
       - name: Start the app on server with PM2
         run: |
-          sudo cd /nodeserver
-          pm2 start app.js
+          sudo bash -c "cd /nodeserver && npm2 run start app.js"
+
 
