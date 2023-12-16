@@ -31,5 +31,6 @@ jobs:
             key: ${{ secrets.VUEPRESS_SERVER_PRI_KEY_1 }}
             script: |
               cd /nodeserver
+              npm install
               pm2 start app.js
               pm2 save
